@@ -5,7 +5,7 @@ import {useEffect} from 'react';
 export default function LoadingComponent({navigation}) {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Auth', {screen: 'SignIn'});
+      navigation.navigate('Auth', {screen: 'SignUp'});
     }, 1000);
   });
   return (

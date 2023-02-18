@@ -7,6 +7,7 @@ import {Input} from '@rneui/themed';
 import HeaderComponent from '../components/HeaderComponent';
 import {sizes} from '../global/size';
 import {Icon} from '@rneui/base';
+import {fonts} from '../global/font';
 export default function SignInScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
@@ -73,6 +74,30 @@ export default function SignInScreen({navigation}) {
           <Text style={styles.social_text}>Google</Text>
         </View>
       </TouchableHighlight>
+      <View
+        style={{
+          alignItems: 'center',
+        }}>
+        <View
+          style={{
+            height: 1,
+            width: 200,
+            backgroundColor: colors.baseText,
+            marginVertical: 20,
+          }}></View>
+      </View>
+      <Text
+        style={{
+          color: colors.baseText,
+          letterSpacing: 1,
+          textAlign: 'center',
+          lineHeight: 23,
+        }}>
+        Everything you need to know, all in one place. HOW WE WORK. Terms of
+        Service. Terms you agree to when you use Facebook. Privacy Policy.
+        Service. Terms you agree to when you use Facebook. Privacy Policy,
+        <Text style={{color: 'blue'}}> Learn More !</Text>
+      </Text>
     </SafeAreaView>
   );
 }
@@ -110,6 +135,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginBottom: 30,
     color: colors.baseText,
+    fontFamily: fonts.text,
   },
   input_login_detail: {
     color: colors.baseText,
@@ -125,6 +151,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: colors.secondColor,
     fontSize: 18,
+    fontFamily: fonts.text,
   },
   social_btn: {
     display: 'flex',
@@ -139,7 +166,8 @@ const styles = StyleSheet.create({
     color: colors.secondColor,
     position: 'absolute',
     left: '45%',
-    width: 60,
+    width: 65,
     textAlign: 'center',
+    fontFamily: fonts.text,
   },
 });
