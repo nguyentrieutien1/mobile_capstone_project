@@ -4,10 +4,14 @@ import {colors} from '../global/styles';
 import {useEffect} from 'react';
 export default function LoadingComponent({navigation}) {
   useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('Auth', {screen: 'SignUp'});
-    }, 1000);
-  });
+    const unsubscribe = navigation.addListener('focus', () => {
+      setTimeout(() => {
+        navigation.navigate('Quiz');
+      }, 1000);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>

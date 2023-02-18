@@ -3,9 +3,16 @@ import {Icon, Text} from '@rneui/base';
 import {View, StyleSheet} from 'react-native';
 import {colors} from '../global/styles';
 export default function HeaderComponent(props) {
+  const {navigation} = props;
+  const {goBack} = navigation;
   return (
     <View style={styles.container}>
-      <Icon iconStyle={styles.icon} name="undo" type="material" />
+      <Icon
+        onPress={() => goBack()}
+        iconStyle={styles.icon}
+        name="undo"
+        type="material"
+      />
       <Text style={styles.title}>{props?.title}</Text>
     </View>
   );
@@ -19,7 +26,7 @@ const styles = StyleSheet.create({
   title: {
     color: colors.baseText,
     fontSize: 20,
-    width: 100,
+    width: 200,
   },
   icon: {
     marginRight: 30,

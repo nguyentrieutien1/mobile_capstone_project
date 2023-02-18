@@ -8,17 +8,19 @@ import HeaderComponent from '../components/HeaderComponent';
 import {sizes} from '../global/size';
 import {Icon} from '@rneui/base';
 import {fonts} from '../global/font';
-export default function SignInScreen({navigation}) {
+export default function ForgotPasswordScreen({navigation}) {
   const {navigate} = navigation;
   return (
     <SafeAreaView style={styles.container}>
       <View style={{zIndex: 1}}>
-        <HeaderComponent title="Login" navigation={navigation} />
+        <HeaderComponent title="Forgot Password" navigation={navigation} />
       </View>
       <View style={styles.view1}></View>
       <View style={styles.view2}></View>
       <View>
-        <Text style={styles.title_login}>Login To Hotel</Text>
+        <Text style={styles.title_login}>
+          Have you forgotten your password?
+        </Text>
         <View style={styles.input_login}>
           <Text style={styles.lable_auth}>Email</Text>
           <Input
@@ -30,28 +32,6 @@ export default function SignInScreen({navigation}) {
             inputStyle={styles.input_login_detail}
           />
         </View>
-        <View style={styles.input_login}>
-          <Text style={styles.lable_auth}>Password</Text>
-          <Input
-            style={styles.input_login_detail}
-            placeholder="thudungngungoc@gmail.com"
-            leftIcon={{
-              type: 'material',
-              name: 'person',
-              color: 'white',
-            }}
-            rightIcon={{
-              type: 'material',
-              name: 'visibility',
-              color: 'white',
-            }}
-            secureTextEntry={true}
-            errorStyle={{color: 'red'}}
-            errorMessage=""
-            errorProps={false}
-            inputStyle={styles.input_login_detail}
-          />
-        </View>
       </View>
       <View
         style={{
@@ -59,58 +39,19 @@ export default function SignInScreen({navigation}) {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-        <Text
-          onPress={() => navigate('ForgotPassword')}
-          style={styles.lable_auth}>
-          Forgot Password
+        <Text onPress={() => navigate('SignIn')} style={styles.lable_auth}>
+          SignIn
         </Text>
         <Text onPress={() => navigate('SignUp')} style={styles.lable_auth}>
-          Create an account
+          SignUp
         </Text>
       </View>
       <TouchableHighlight
         underlayColor={colors.mainColor}
         onPress={() => alert('Nguyen Thanh Tung')}
         style={styles.login_btn}>
-        <Text style={styles.login_text}>Login</Text>
+        <Text style={styles.login_text}>Submit</Text>
       </TouchableHighlight>
-      <Text style={{textAlign: 'center', color: colors.baseText}}>Or</Text>
-      <TouchableHighlight>
-        <View style={styles.social_btn}>
-          <Icon name="facebook" color={colors.secondColor} />
-          <Text style={styles.social_text}>Facebook</Text>
-        </View>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <View style={styles.social_btn}>
-          <Icon type="font-awesome" name="google" color={colors.secondColor} />
-          <Text style={styles.social_text}>Google</Text>
-        </View>
-      </TouchableHighlight>
-      <View
-        style={{
-          alignItems: 'center',
-        }}>
-        <View
-          style={{
-            height: 1,
-            width: 200,
-            backgroundColor: colors.baseText,
-            marginVertical: 20,
-          }}></View>
-      </View>
-      <Text
-        style={{
-          color: colors.baseText,
-          letterSpacing: 1,
-          textAlign: 'center',
-          lineHeight: 23,
-        }}>
-        Everything you need to know, all in one place. HOW WE WORK. Terms of
-        Service. Terms you agree to when you use Facebook. Privacy Policy.
-        Service. Terms you agree to when you use Facebook. Privacy Policy,
-        <Text style={{color: 'blue'}}> Learn More !</Text>
-      </Text>
     </SafeAreaView>
   );
 }
@@ -119,6 +60,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.mainColor,
     padding: sizes.padding,
+    justifyContent: 'center',
   },
   view1: {
     position: 'absolute',

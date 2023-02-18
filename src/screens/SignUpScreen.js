@@ -10,6 +10,7 @@ import {fonts} from '../global/font';
 import {ScrollView} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 export default function SignUpScreen({navigation}) {
+  const {navigate} = navigation;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.view1}></View>
@@ -48,12 +49,6 @@ export default function SignUpScreen({navigation}) {
                 name: 'envelope-open',
                 color: 'white',
               }}
-              rightIcon={{
-                type: 'font-awesome',
-                name: 'visibility',
-                color: 'white',
-              }}
-              secureTextEntry={true}
               errorStyle={{color: 'red'}}
               errorMessage=""
               errorProps={false}
@@ -71,12 +66,6 @@ export default function SignUpScreen({navigation}) {
                 name: 'address-card',
                 color: 'white',
               }}
-              rightIcon={{
-                type: 'font-awesome',
-                name: 'visibility',
-                color: 'white',
-              }}
-              secureTextEntry={true}
               errorStyle={{color: 'red'}}
               errorMessage=""
               errorProps={false}
@@ -94,7 +83,6 @@ export default function SignUpScreen({navigation}) {
                 name: 'phone',
                 color: 'white',
               }}
-              secureTextEntry={true}
               errorStyle={{color: 'red'}}
               errorMessage=""
               errorProps={false}
@@ -128,7 +116,7 @@ export default function SignUpScreen({navigation}) {
               }}
               rightIcon={{
                 type: 'font-awesome',
-                name: 'visibility',
+                name: 'eye',
                 color: 'white',
               }}
               secureTextEntry={true}
@@ -142,6 +130,7 @@ export default function SignUpScreen({navigation}) {
             {/* RE-PASSWORD */}
             <Text style={styles.lable_auth}>Re-Password</Text>
             <Input
+              secureTextEntry={true}
               style={styles.input_login_detail}
               placeholder="thudungngungoc@gmail.com"
               leftIcon={{
@@ -151,10 +140,9 @@ export default function SignUpScreen({navigation}) {
               }}
               rightIcon={{
                 type: 'font-awesome',
-                name: 'visibility',
+                name: 'eye',
                 color: 'white',
               }}
-              secureTextEntry={true}
               errorStyle={{color: 'red'}}
               errorMessage=""
               errorProps={false}
@@ -162,7 +150,7 @@ export default function SignUpScreen({navigation}) {
             />
           </View>
         </View>
-        <Text onPress={() => alert(123)} style={styles.lable_auth}>
+        <Text onPress={() => navigate('SignIn')} style={styles.lable_auth}>
           Are you have an account ? let sign right now !
         </Text>
         <TouchableHighlight
@@ -214,6 +202,14 @@ const styles = StyleSheet.create({
   },
   input_login_detail: {
     color: colors.baseText,
+  },
+  input_login: {
+    borderLeftWidth: 2,
+    borderRadius: 6,
+    paddingLeft: 10,
+    marginVertical: 15,
+    height: 70,
+    borderLeftColor: colors.baseText,
   },
   login_btn: {
     marginTop: 20,
