@@ -1,5 +1,6 @@
 import {Text} from '@rneui/base';
 import {
+  Alert,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -7,22 +8,48 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import HeaderComponent from '../components/HeaderComponent';
 import {colors} from '../global/styles';
 import {sizes} from '../global/size';
 import {fonts} from '../global/font';
 import {allQuestion} from '../data/quiz';
+import axios from 'axios';
 
 export default function QuizScreen({navigation}) {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(0);
+  const [quizs, setQuizs] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const scrollViewRef = useRef(null);
+  const quizRef = useRef(null);
   const onRefresh = () => {
     setRefreshing(true);
+    axios
+      .get('https://capstonedtu.site/quiz')
+      .then(response => response.data)
+      .then(data => {
+        console.log(data);
+      });
     setTimeout(() => {
       setCount(0);
       setRefreshing(false);
     }, 2000);
+  };
+  useEffect(() => {
+    setQuizs([...allQuestion]);
+  }, []);
+  const handleSaveQuiz = () => {
+    setCount(prevState => ++prevState);
+    scrollViewRef.current?.scrollTo({y: 1, animated: true});
+  };
+  const handleSelectQuiz = index => {
+    const isSelected = quizs[count]?.answer[index]['isSelected'];
+    if (isSelected) {
+      quizs[count]['answer'][index]['isSelected'] = 0;
+    } else {
+      quizs[count]['answer'][index]['isSelected'] = 1;
+    }
+    setQuizs([...quizs]);
   };
   return (
     <>
@@ -32,6 +59,7 @@ export default function QuizScreen({navigation}) {
           Please select quiz to receive best our the recommend
         </Text>
         <ScrollView
+          ref={scrollViewRef}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }>
@@ -40,15 +68,31 @@ export default function QuizScreen({navigation}) {
             <View>
               <Text style={{textAlign: 'center', color: colors.baseText}}>{`${
                 count + 1
-              }/${allQuestion?.length}`}</Text>
+              }/${quizs?.length}`}</Text>
               <Text style={styles.question_text}>
-                {`${count + 1}.${allQuestion[0]?.question}`}
+                {`${count + 1}.${quizs[0]?.question}`}
               </Text>
+              {/* MAP QUIZS */}
               <View style={styles.quiz_list}>
-                {allQuestion[count]?.answer?.map((answer, index) => {
+                {quizs[count]?.answer?.map((answer, index) => {
                   return (
-                    <View style={styles.quiz_item} key={index}>
-                      <TouchableHighlight>
+                    <View
+                      ref={quizRef}
+                      style={
+                        !answer?.isSelected
+                          ? styles.quiz_item
+                          : styles.quiz_item_false
+                      }
+                      key={index}>
+                      <TouchableHighlight
+                        underlayColor={colors.mainColor}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                        onPress={() => handleSelectQuiz(index)}>
                         <Text style={styles.text_quiz_item}>
                           {answer?.data}
                         </Text>
@@ -56,11 +100,16 @@ export default function QuizScreen({navigation}) {
                     </View>
                   );
                 })}
+                <View style={styles.view_btn}>
+                  <TouchableHighlight
+                    underlayColor={colors.mainColor}
+                    onPress={handleSaveQuiz}
+                    style={styles.submit_btn}>
+                    <Text style={styles.text_btn}>Next question</Text>
+                  </TouchableHighlight>
+                </View>
               </View>
             </View>
-            <TouchableHighlight style={styles.submit_btn}>
-              <Text>Next question</Text>
-            </TouchableHighlight>
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -107,5 +156,33 @@ const styles = StyleSheet.create({
   question_text: {
     color: colors.baseText,
     marginVertical: 20,
+  },
+  view_btn: {
+    width: 350,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  submit_btn: {
+    borderWidth: 1,
+    borderColor: colors.secondColor,
+    borderRadius: sizes.borderButton,
+    padding: 15,
+    marginVertical: 20,
+  },
+  text_btn: {
+    textAlign: 'center',
+    color: colors.secondColor,
+  },
+  quiz_item_false: {
+    margin: 10,
+    width: '44%',
+    backgroundColor: colors.secondColor,
+    height: 120,
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: colors.baseText,
+    borderBottomLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
 });

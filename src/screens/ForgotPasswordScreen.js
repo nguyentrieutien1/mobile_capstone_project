@@ -6,7 +6,6 @@ import {colors} from '../global/styles';
 import {Input} from '@rneui/themed';
 import HeaderComponent from '../components/HeaderComponent';
 import {sizes} from '../global/size';
-import {Icon} from '@rneui/base';
 import {fonts} from '../global/font';
 export default function ForgotPasswordScreen({navigation}) {
   const {navigate} = navigation;
