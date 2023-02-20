@@ -6,7 +6,7 @@ export default function LoadingComponent({navigation}) {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setTimeout(() => {
-        navigation.navigate('Quiz');
+        navigation.navigate('Auth', {screen: 'Screen'});
       }, 1000);
     });
 

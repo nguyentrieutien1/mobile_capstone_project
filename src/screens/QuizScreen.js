@@ -1,6 +1,5 @@
 import {Text} from '@rneui/base';
 import {
-  Alert,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -14,8 +13,6 @@ import {colors} from '../global/styles';
 import {sizes} from '../global/size';
 import {fonts} from '../global/font';
 import {allQuestion} from '../data/quiz';
-import axios from 'axios';
-
 export default function QuizScreen({navigation}) {
   const [count, setCount] = useState(0);
   const [quizs, setQuizs] = useState([]);
@@ -24,12 +21,6 @@ export default function QuizScreen({navigation}) {
   const quizRef = useRef(null);
   const onRefresh = () => {
     setRefreshing(true);
-    axios
-      .get('https://capstonedtu.site/quiz')
-      .then(response => response.data)
-      .then(data => {
-        console.log(data);
-      });
     setTimeout(() => {
       setCount(0);
       setRefreshing(false);

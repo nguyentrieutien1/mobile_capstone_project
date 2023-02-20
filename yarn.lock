@@ -7286,6 +7286,11 @@ react-is@^18.2.0:
   resolved "https://registry.npmjs.org/react-is/-/react-is-18.2.0.tgz"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+react-native-alert-notification@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.npmjs.org/react-native-alert-notification/-/react-native-alert-notification-0.3.4.tgz"
+  integrity sha512-B31sNyJZ9ZdAiaS3Q/2Wo/OqUWNayz0YbdBJ9WKQNGMe2wTds5GgMzU0EX4zrtWjljNyx/sneDqlwwS//NnMgg==
+
 react-native-cli@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/react-native-cli/-/react-native-cli-2.0.1.tgz"
@@ -7321,6 +7326,11 @@ react-native-gradle-plugin@^0.71.15:
   version "0.71.15"
   resolved "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.15.tgz"
   integrity sha512-7S3pAuPaQJlhax6EZ4JMsDNpj05TfuzX9gPgWLrFfAIWIFLuJ6aDQYAZy2TEI9QJALPoWrj8LWaqP/DGYh14pw==
+
+react-native-popup-confirm-toast@^2.2.7:
+  version "2.2.7"
+  resolved "https://registry.npmjs.org/react-native-popup-confirm-toast/-/react-native-popup-confirm-toast-2.2.7.tgz"
+  integrity sha512-yy5U20sMW4a/ryRCsGb3RBT5+1c5DoIJduBk0NCUlLYIGen0JQ6AHlKk0QoprWezGKEKZuXhOnT3iq+mY1IrGw==
 
 react-native-ratings@^8.1.0:
   version "8.1.0"
@@ -7360,6 +7370,11 @@ react-native-size-matters@^0.4.0:
   resolved "https://registry.npmjs.org/react-native-size-matters/-/react-native-size-matters-0.4.0.tgz"
   integrity sha512-8/C0htHrFWeUm9N8JegmadovUfgTWkGBkDPZ1N3YkXtDWb+98Ya2gThiKcu445r8c7YhcrBfnHz/mYsXIusaOQ==
 
+react-native-status-bar-height@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.npmjs.org/react-native-status-bar-height/-/react-native-status-bar-height-2.6.0.tgz"
+  integrity sha512-z3SGLF0mHT+OlJDq7B7h/jXPjWcdBT3V14Le5L2PjntjjWM3+EJzq2BcXDwV+v67KFNJic5pgA26cCmseYek6w==
+
 react-native-svg@*:
   version "13.8.0"
   resolved "https://registry.npmjs.org/react-native-svg/-/react-native-svg-13.8.0.tgz"
@@ -7376,7 +7391,7 @@ react-native-vector-icons@^9.2.0, react-native-vector-icons@>7.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native@*, react-native@>=0.57, react-native@>=0.59, react-native@0.71.3:
+react-native@*, react-native@>=0.57, react-native@>=0.59, react-native@>=0.62.0, react-native@0.71.3:
   version "0.71.3"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.71.3.tgz"
   integrity sha512-RYJXCcQGa4NTfKiPgl92eRDUuQ6JGDnHqFEzRwJSqEx9lWvlvRRIebstJfurzPDKLQWQrvITR7aI7e09E25mLw==
