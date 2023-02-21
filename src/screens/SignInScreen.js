@@ -17,7 +17,6 @@ import {instanceAxios} from './../config/api.config';
 export default function SignInScreen({navigation}) {
   const {navigate} = navigation;
   const [account, setAccount] = useState({email: '', password: ''});
-  const [isShowToast, setIsShowToast] = useState(false);
   const handleInput = (name, value) => {
     setAccount(prevState => {
       return {
@@ -40,7 +39,14 @@ export default function SignInScreen({navigation}) {
           autoClose: 1,
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      Dialog.show({
+        type: ALERT_TYPE.DANGER,
+        title: 'Error',
+        textBody: 'Email Or Password is wrong !!!',
+        autoClose: 1,
+      });
+    }
   };
   return (
     <AlertNotificationRoot>
@@ -62,6 +68,7 @@ export default function SignInScreen({navigation}) {
               errorStyle={{color: 'red'}}
               errorMessage=""
               inputStyle={styles.input_login_detail}
+              value={account?.email}
             />
           </View>
           <View style={styles.input_login}>
@@ -84,6 +91,7 @@ export default function SignInScreen({navigation}) {
               errorMessage=""
               errorProps={false}
               inputStyle={styles.input_login_detail}
+              value={account?.password}
             />
           </View>
         </View>
