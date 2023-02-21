@@ -14,6 +14,7 @@ import {sizes} from '../global/size';
 import {Icon} from '@rneui/base';
 import {fonts} from '../global/font';
 import {instanceAxios} from './../config/api.config';
+import {storage} from '../utils/storage';
 export default function SignInScreen({navigation}) {
   const {navigate} = navigation;
   const [account, setAccount] = useState({email: '', password: ''});
@@ -30,14 +31,16 @@ export default function SignInScreen({navigation}) {
     try {
       const result = await instanceAxios('/accounts/login', 'POST', account);
       const data = result?.data;
-      const {statusCode, message} = data;
+      const {statusCode, message, access_token} = data;
       if (statusCode === 202) {
+        storage.set('access_token', access_token);
         Dialog.show({
           type: ALERT_TYPE.SUCCESS,
           title: 'Success',
           textBody: message,
           autoClose: 1,
         });
+        navigate('ScanQr');
       }
     } catch (error) {
       Dialog.show({
